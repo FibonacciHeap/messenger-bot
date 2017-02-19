@@ -20,6 +20,8 @@ const
 
 var app = express();
 
+var conversationTable = {};
+
 var LostPet = false;
 var StrayPet = false;
 var AwarePet = false;
@@ -305,18 +307,20 @@ function receivedMessage(event) {
     if(messageText === "stray" && !StrayPet){
         StrayPet = true;
         Sarr[0] = 1;
-        var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
+        var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
+        conversationTable.push(senderID: {"conversationType": messageText});
     } else if(messageText === "lost" && !LostPet) {
         LostPet = true;
         Larr[0] = 1;
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
+        conversationTable.push(senderID: {"conversationType": messageText});
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
         Aarr[0] = 1;
-        var messageText = "Hi there! Did you know that ... ? This is a surprising fact to many Americans and ... If you would like more of this interesting information, please simply reply to this message.";
+        var messageText = "Hi there! Did you know that over two million dogs and cats are still killed in shelters every year? This is a surprising fact to many Americans and there has been a lot of progress in this spapce, but there is still much work to do. We can saves these lives together through awareness and action. If you would like more of this interesting information, please simply reply to this message.";
         sendTextMessage(senderID, messageText);
       //function call
     }
@@ -332,12 +336,16 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
+      conversationTable[senderID].url = messageAttachments; //?
+
       //call corresponding function
       Sarr[1] = 1;
-      var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
+      var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[0] == 1 && Larr[1] == 0){
+      conversationTable[senderID].zipcode = messageText; //?
+
       //call corresponding function
       Larr[1] = 1;
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
@@ -349,16 +357,21 @@ function receivedMessage(event) {
     else if(Aarr[1] == 1 && Aarr[2] == 0){
       //call corresponding function
       Aarr[2] = 1;
-      var messageText = " "; //MAKE CALL TO BUTTON FUNTION?
+      var messageText = "Something"; //MAKE CALL TO BUTTON FUNTION?
       sendTextMessage(senderID, messageText);
+      sendButtonMessage(senderID);
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
+      conversationTable[senderID].zipcode = messageText;
+      sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr[2] = 1;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[1] == 1 && Larr[2] == 0){
+      conversationTable[senderID].url = messageText;
+      sendConversationToDatabase(senderID);
       //call corresponding function
       Larr[2] = 1;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
@@ -738,7 +751,7 @@ function sendButtonMessage(recipientId) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "This is test text",
+          text: "Here are a bunch of valuable resources to learn how you can help this cause!",
           buttons:[{
             type: "web_url",
             url: "https://www.facebook.com/bestfriendsanimalsociety/",
@@ -1017,6 +1030,24 @@ function callSendAPI(messageData) {
       console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
     }
   });
+}
+
+
+function sendConversationToDatabase(senderID) {
+  console.log("TEST1", conversationTable);
+  // Clean information
+  conversation = conversationTable[senderID];
+  conversation.userID = senderID;
+  delete conversation.conversationType;
+
+  // Send information
+  var DATA_API_URL = "https://";
+  //request.post(DATA_API_URL).form(conversation);
+  console.log("TEST2", conversation);
+
+  // Delete conversation
+  delete conversationTable[senderID];
+  console.log("TEST3", conversationTable);
 }
 
 // Start server
