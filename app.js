@@ -1074,16 +1074,15 @@ function callSendAPI(messageData) {
 function sendConversationToDatabase(senderID) {
   console.log("TEST1", conversationTable);
   // Clean information
-  var conversation = conversationTable[senderID];
-  conversation.userID = senderID;
+  conversationTable[senderID]["userID"] = senderID;
 
   var url = "https://pet-detective-159121.appspot.com";
   if (conversation.conversationType == "Lost") {
     url += "/lost";
-    conversation["recordType"] = "owner"; // LOL!
+    conversationTable[senderID]["recordType"] = "owner"; // LOL!
   } else if (conversation.conversationType == "Report") { // samaritan
     url += "/found";
-    conversation["recordType"] = "samaratan";
+    conversationTable[senderID]["recordType"] = "samaratan";
   }
 
   delete conversation.conversationType;
