@@ -325,7 +325,7 @@ function receivedMessage(event) {
     if(messageText === "Report" && !StrayPet){
         StrayPet = true;
         Sarr = 1;
-        //conversationTable[senderID] = {"conversationType": messageText};
+        conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
 
@@ -337,7 +337,7 @@ function receivedMessage(event) {
 
         LostPet = true;
         Larr = 1;
-        //conversationTable[senderID] = {"conversationType": messageText};
+        conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
         sendQuickReply(senderID);
@@ -362,7 +362,7 @@ function receivedMessage(event) {
     }
     else if(Sarr == 1){
       console.log('check', my_data);
-      //conversationTable[senderID].url = my_data.attachments.payload.url;
+      conversationTable[senderID].url = my_data.attachments.payload.url;
 
       //call corresponding function
       Sarr = 2;
@@ -374,8 +374,8 @@ function receivedMessage(event) {
       console.log('check', my_data);
       //conversationTable[senderID].zipcode = messageText;
 
-      //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
-      //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
+      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
 
       //call corresponding function
       Larr = 2;
@@ -395,8 +395,8 @@ function receivedMessage(event) {
     else if(Sarr == 2){
       console.log('check', my_data);
       //conversationTable[senderID].zipcode = messageText;
-      //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
-      //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
+      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr = 3;
@@ -414,7 +414,7 @@ function receivedMessage(event) {
     }
     else if(Larr == 2){
       console.log('check', my_data);
-      //conversationTable[senderID].url = my_data.attachments.payload.url;
+      conversationTable[senderID].url = my_data.attachments.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Larr = 3;
