@@ -314,7 +314,7 @@ function receivedMessage(event) {
     if(messageText === "Report" && !StrayPet){
         StrayPet = true;
         Sarr = 1;
-        conversationTable[senderID] = {"conversationType": messageText};
+        //conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
 
@@ -326,7 +326,7 @@ function receivedMessage(event) {
 
         LostPet = true;
         Larr = 1;
-        conversationTable[senderID] = {"conversationType": messageText};
+        //conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
         sendQuickReply(senderID);
@@ -389,6 +389,8 @@ function receivedMessage(event) {
       Sarr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
       sendTextMessage(senderID, messageText);
+      sendGifMessage(senderID);
+      sendTextMessage(senderID, "Ask 'what's next?' to go back to the original menu and do something else!'");
     }
     else if(Larr == 2){
       //conversationTable[senderID].url = my_data.attachments.payload.url;
@@ -398,11 +400,12 @@ function receivedMessage(event) {
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
       sendTextMessage(senderID, messageText);
       sendGifMessage(senderID);
+      sendTextMessage(senderID, "Ask 'what's next?' to go back to the original menu and do something else!'");
     }
 
     if(Larr == 3 || Aarr == 3 || Sarr == 3){
-      var messageText = "";
-      sendTextMessage(senderID, messageText);
+      var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
+      sendTextMessage(senderID, IntiationString);
     }
 
     //***************************
