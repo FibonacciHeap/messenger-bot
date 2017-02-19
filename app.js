@@ -398,7 +398,7 @@ function receivedMessage(event) {
       //conversationTable[senderID].zipcode = messageText;
       //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
-      sendConversationToDatabase(senderID, "samaratin");
+      sendConversationToDatabase(senderID, "found");
       //call corresponding function
       Sarr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
@@ -416,7 +416,7 @@ function receivedMessage(event) {
     else if(Larr == 2){
       console.log('check', my_data);
       //conversationTable[senderID].url = my_data.attachments.payload.url;
-      sendConversationToDatabase(senderID, "owner");
+      sendConversationToDatabase(senderID, "lost");
       //call corresponding function
       Larr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
@@ -1077,7 +1077,7 @@ function sendConversationToDatabase(senderID, type) {
   // Clean information
   // conversationTable[senderID]["userID"] = senderID;
   //
-  // var url = "https://pet-detective-159121.appspot.com";
+  var url = "https://pet-detective-159121.appspot.com/" + url;
   // if (conversation.conversationType == "Lost") {
   //   url += "/lost";
   //   conversationTable[senderID]["recordType"] = "owner"; // LOL!
