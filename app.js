@@ -367,7 +367,8 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  sendTextMessage(senderID, "Hello there!");
+  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
+  sendTextMessage(senderID, IntiationString);
 }
 
 /*
@@ -528,7 +529,7 @@ function sendTextMessage(recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: messageText,
+      text: recipientId,
       metadata: "DEVELOPER_DEFINED_METADATA"
     }
   };
