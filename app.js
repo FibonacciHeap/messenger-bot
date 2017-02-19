@@ -427,7 +427,7 @@ function receivedMessage(event) {
 
     if(Larr == 3 || Aarr == 3 || Sarr == 3){
       var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
-      sendTextMessage(senderID, IntiationString);
+      //sendTextMessage(senderID, IntiationString);
     }
 
     //***************************
@@ -1077,7 +1077,7 @@ function sendConversationToDatabase(senderID, type) {
   // Clean information
   // conversationTable[senderID]["userID"] = senderID;
   //
-  var url = "https://pet-detective-159121.appspot.com/" + url;
+  var url = "https://pet-detective-159121.appspot.com/" + type;
   // if (conversation.conversationType == "Lost") {
   //   url += "/lost";
   //   conversationTable[senderID]["recordType"] = "owner"; // LOL!
