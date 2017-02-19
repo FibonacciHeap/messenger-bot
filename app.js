@@ -594,8 +594,8 @@ function sendTextMessage(recipientId, messageText) {
          }
        }
      }
-   };
-
+   }
+};
 
 
 function sendButtonMessage(recipientId) {
