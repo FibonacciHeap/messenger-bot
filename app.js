@@ -271,9 +271,9 @@ function receivedMessage(event) {
 
   //if (seqNum % 2 == 0) {
     sendTextMessage(senderID, seqNum);
-    sendTextMessage(senderID, " ");
+    sendTextMessage(senderID, "P");
     sendTextMessage(senderID, seqNum2);
-    sendTextMessage(senderID, " ");
+    sendTextMessage(senderID, "R");
     sendTextMessage(senderID, seqNum3);
   //} else if(seqNum % 2 == 1){
     //sendTextMessage(senderID, "Im odd!");
