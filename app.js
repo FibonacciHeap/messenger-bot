@@ -248,15 +248,30 @@ function receivedMessage(event) {
     sendTextMessage(senderID, "Quick reply tapped");
     return;
   }
+/*
+  var stray = messageText.includes("stray") || messageText.includes("Stray");
+  var lost = messageText.includes() || messageText.includes();
+  var aware = messageText.includes() || messageText.includes() || messageText.includes();
+  var update = messageText.includes() || messageText.includes() || messageText.includes() || messageText.includes();
 
+  if(){
+
+  } else if (true) {
+
+  } else if(){
+
+  } else ()
+
+  }
+*/
   if (messageText) {
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'image':
-        sendImageMessage(senderID);
+      case 'petdetect':
+        sendFirstButtonMessage(senderID);
         break;
 
       case 'Stray Animal.':
