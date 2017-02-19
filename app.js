@@ -383,6 +383,10 @@ function receivedMessage(event) {
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
       sendTextMessage(senderID, messageText);
     }
+    else if(Larr == 3 || Aarr == 3 || Sarr == 3){
+      var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
+      sendTextMessage(senderID, IntiationString);
+    }
 
     //************************
 
@@ -425,10 +429,6 @@ function receivedMessage(event) {
       sendTextMessage(senderID, "Ask 'what's next?' to go back to the original menu and do something else!'");
     }
 
-    if(Larr == 3 || Aarr == 3 || Sarr == 3){
-      var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
-      //sendTextMessage(senderID, IntiationString);
-    }
 
     //***************************
     /*
