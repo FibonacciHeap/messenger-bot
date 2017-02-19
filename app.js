@@ -355,7 +355,7 @@ function receivedMessage(event) {
       sendQuickReply(senderID);
     }
     else if(Larr[0] == 1 && Larr[1] == 0){
-      conversationTable[senderID].zipcode = messageText;
+      //conversationTable[senderID].zipcode = messageText;
       conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
 
@@ -375,7 +375,7 @@ function receivedMessage(event) {
       sendButtonMessage(senderID);
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
-      conversationTable[senderID].zipcode = messageText;
+      //conversationTable[senderID].zipcode = messageText;
       conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
       sendConversationToDatabase(senderID);
