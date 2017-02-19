@@ -351,7 +351,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr == 1){
-      conversationTable[senderID].url = my_data.attachments.payload.url;
+      //conversationTable[senderID].url = my_data.attachments.payload.url;
 
       //call corresponding function
       Sarr = 2;
@@ -362,8 +362,8 @@ function receivedMessage(event) {
     else if(Larr == 1 ){
       //conversationTable[senderID].zipcode = messageText;
 
-      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
+      //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
 
       //call corresponding function
       Larr = 2;
@@ -382,8 +382,8 @@ function receivedMessage(event) {
     }
     else if(Sarr == 2){
       //conversationTable[senderID].zipcode = messageText;
-      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
+      //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr = 3;
@@ -391,7 +391,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Larr == 2){
-      conversationTable[senderID].url = my_data.attachments.payload.url;
+      //conversationTable[senderID].url = my_data.attachments.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Larr = 3;
