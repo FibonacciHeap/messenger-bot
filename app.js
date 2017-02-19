@@ -236,6 +236,7 @@ function receivedMessage(event) {
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
+  var my_data = JSON.stringify(message);
 
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
@@ -323,7 +324,7 @@ function receivedMessage(event) {
         conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
-
+        sendQuickReply(recipientId);
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
@@ -344,16 +345,18 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
-      conversationTable[senderID].url = message.attachments;
+      conversationTable[senderID].url = my_data.attachment;
 
       //call corresponding function
       Sarr[1] = 1;
       var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
       sendTextMessage(senderID, messageText);
+      sendQuickReply(recipientId);
     }
     else if(Larr[0] == 1 && Larr[1] == 0){
-      conversationTable[senderID].zipcode = messageText; //?
-
+      //conversationTable[senderID].zipcode = messageText; //?
+      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
       //call corresponding function
       Larr[1] = 1;
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
@@ -371,6 +374,8 @@ function receivedMessage(event) {
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
       conversationTable[senderID].zipcode = messageText;
+      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr[2] = 1;
@@ -378,7 +383,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[1] == 1 && Larr[2] == 0){
-      conversationTable[senderID].url = message.attachments;
+      conversationTable[senderID].url = my_data.attachment;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Larr[2] = 1;
@@ -903,35 +908,23 @@ function sendReceiptMessage(recipientId) {
  * Send a message with Quick Reply buttons.
  *
  */
-function sendQuickReply(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "What's your favorite movie genre?",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
-        },
-        {
-          "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-        }
-      ]
-    }
-  };
 
-  callSendAPI(messageData);
-}
+ function sendQuickReply(recipientId) {
+   var messageData = {
+     recipient: {
+       id: recipientId
+     },
+       message:{
+       text:"Please share your location:",
+       quick_replies:[
+         {
+           "content_type":"location",
+         }
+       ]
+     }
+   };
+   callSendAPI(messageData);
+ }
 
 /*
  * Send a read receipt to indicate the message has been read
