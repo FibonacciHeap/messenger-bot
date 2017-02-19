@@ -20,6 +20,7 @@ const defaultResponses = {
       ]
     }
   },
+  startMessage: "Hello there friend! Thanks for coming to the Pet Detective. \n You have three options! Option 1, Option 2, and Option 3."
   samarMessage: "Oh you're the best!",
   lostMessage: "Alrighty then! I'm here to help",
   awareMessage: "Hey there! Good to hear from you. What kind of info would you like to know about?",
@@ -88,7 +89,11 @@ const buildMessage = (message, key) => {
 
 const getResponsesForMessage = ({message, userKey}) => {
   return new Promise((resolve, reject) => {
-    if(message.text === 'Option 1') {
+    //console.log(message);
+    if(message.text === 'Get Started') {
+      resolve([defaultResponses.startMessage])
+    }
+    else if(message.text === 'Option 1') {
       resolve([defaultResponses.samarMessage]);
     } else if(message.text === 'Option 2') {
       resolve([defaultResponses.lostMessage]);
