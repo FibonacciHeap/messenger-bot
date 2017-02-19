@@ -309,13 +309,13 @@ function receivedMessage(event) {
         Sarr[0] = 1;
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
-        conversationTable.push(senderID: {"conversationType": messageText});
+        conversationTable[senderID] = {"conversationType": messageText};
     } else if(messageText === "lost" && !LostPet) {
         LostPet = true;
         Larr[0] = 1;
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
-        conversationTable.push(senderID: {"conversationType": messageText});
+        conversationTable[senderID] = {"conversationType": messageText};
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
