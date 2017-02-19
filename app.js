@@ -229,6 +229,7 @@ function receivedMessage(event) {
   var messageId = message.mid;
   var appId = message.app_id;
   var metadata = message.metadata;
+  var seqNum = message.sequenceNumber;
 
   // You may get a text or attachment but not both
   var messageText = message.text;
@@ -248,22 +249,30 @@ function receivedMessage(event) {
     sendTextMessage(senderID, "Quick reply tapped");
     return;
   }
-/*
-  var stray = messageText.includes("stray") || messageText.includes("Stray");
-  var lost = messageText.includes() || messageText.includes();
-  var aware = messageText.includes() || messageText.includes() || messageText.includes();
-  var update = messageText.includes() || messageText.includes() || messageText.includes() || messageText.includes();
+  /*
+    var stray = messageText.includes("stray") || messageText.includes("Stray");
+    var lost = messageText.includes() || messageText.includes();
+    var aware = messageText.includes() || messageText.includes() || messageText.includes();
+    var update = messageText.includes() || messageText.includes() || messageText.includes() || messageText.includes();
 
-  if(){
+    if(){
 
-  } else if (true) {
+    } else if (true) {
 
-  } else if(){
+    } else if(){
 
-  } else ()
+    } else ()
 
+    }
+  */
+  if (seqNum % 2 == 0) {
+    sendTextMessage(senderID, "Im even!");
+  } else if(seqNum % 2 == 1){
+    sendTextMessage(senderID, "Im odd!");
   }
-*/
+
+
+
   if (messageText) {
 
     // If we receive a text message, check to see if it matches any special
@@ -271,7 +280,7 @@ function receivedMessage(event) {
     // the text we received.
     switch (messageText) {
       case 'hi':
-        sendFirstButtonMessage(senderID);
+        sendButtonMessage(senderID);
         break;
 
       case 'Stray Animal.':
@@ -584,40 +593,6 @@ function sendTextMessage(recipientId, messageText) {
  * Send a button message using the Send API.
  *
  */
- function sendFirstButtonMessage(recipientId) {
-   var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
-   var messageData = {
-     recipient: {
-       id: recipientId
-     },
-     message: {
-       attachment: {
-         type: "template",
-         payload: {
-           template_type: "button",
-           text: IntiationString,
-           buttons:[{
-             type: "web_url",
-             url: "https://www.oculus.com/en-us/rift/",
-             title: "Open Web URL"
-           }, {
-             type: "postback",
-             title: "Trigger Postback",
-             payload: "DEVELOPER_DEFINED_PAYLOAD"
-           }, {
-             type: "postback",
-             title: "Trigger Postback",
-             payload: "DEVELOPER_DEFINED_PAYLOAD"
-           }, {
-             type: "web_url",
-             url: "https://www.oculus.com/en-us/rift/",
-             title: "Animal Awareness"
-           }]
-         }
-       }
-     }
-   }
-};
 
 
 function sendButtonMessage(recipientId) {
