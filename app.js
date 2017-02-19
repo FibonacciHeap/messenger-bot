@@ -423,7 +423,7 @@ function receivedMessage(event) {
     */
     //******************************
 
-
+/*
     switch (messageText) {
       case 'hi':
         sendButtonMessage(senderID);
@@ -495,6 +495,7 @@ function receivedMessage(event) {
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
+  */
 }
 
 function sendGenericMessage(recipientId, messageText) {
