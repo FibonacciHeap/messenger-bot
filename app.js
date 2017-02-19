@@ -342,9 +342,8 @@ function receivedMessage(event) {
         Larr = 1;
         //conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
-        //sendTextMessage(senderID, messageText);
-        sendQuickReply(senderID);
         sendTextMessage(senderID, messageText);
+        sendQuickReply(senderID);
 
       //function call
     } else if(messageText === "Aware" && !AwarePet) {
@@ -372,10 +371,8 @@ function receivedMessage(event) {
       //call corresponding function
       Sarr = 2;
       var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location?";
-      //sendTextMessage(senderID, messageText);
-      //setTimeout(function() { sendQuickReply(senderID);; }, 5000);
-      sendQuickReply(senderID);
       sendTextMessage(senderID, messageText);
+      sendQuickReply(senderID);
     }
     else if(Larr == 1 ){
       console.log('check', my_data);
