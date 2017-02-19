@@ -346,7 +346,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
-      conversationTable[senderID].url = my_data.attachment.payload.url;
+      conversationTable[senderID].url = my_data.attachments.payload.url;
 
       //call corresponding function
       Sarr[1] = 1;
@@ -385,7 +385,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[1] == 1 && Larr[2] == 0){
-      conversationTable[senderID].url = my_data.attachment.payload.url;
+      conversationTable[senderID].url = my_data.attachments.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Larr[2] = 1;
