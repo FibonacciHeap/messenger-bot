@@ -259,6 +259,18 @@ function receivedMessage(event) {
         sendImageMessage(senderID);
         break;
 
+      case 'Stray Animal.':
+        sendStrayMessage(senderID, messageText);
+        break;
+
+      case 'Report your lost pet.':
+        sendLostMessage(senderID, messageText);
+        break;
+
+      case 'Awareness.':
+        sendAwarenesMessage(senderID, messageText);
+        break;
+
       case 'gif':
         sendGifMessage(senderID);
         break;
@@ -368,7 +380,8 @@ function receivedPostback(event) {
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
   var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
-  sendTextMessage(senderID, IntiationString);
+  //sendTextMessage(senderID, IntiationString);
+  sendFirstButtonMessage(senderId);
 }
 
 /*
@@ -413,6 +426,18 @@ function receivedAccountLink(event) {
  * Send an image using the Send API.
  *
  */
+function sendStrayMessage(senderID, messageText){
+
+}
+
+function sendLostMessage(senderID, messageText){
+
+}
+
+function sendAwarenesMessage(senderID, messageText){
+
+}
+
 function sendImageMessage(recipientId) {
   var messageData = {
     recipient: {
@@ -541,6 +566,38 @@ function sendTextMessage(recipientId, messageText) {
  * Send a button message using the Send API.
  *
  */
+ function sendFirstButtonMessage(recipientId) {
+   var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
+   var messageData = {
+     recipient: {
+       id: recipientId
+     },
+     message: {
+       attachment: {
+         type: "template",
+         payload: {
+           template_type: "button",
+           text: IntiationString,
+           buttons:[{
+             type: "web_url",
+             url: "https://www.oculus.com/en-us/rift/",
+             title: "Open Web URL"
+           }, {
+             type: "postback",
+             title: "Trigger Postback",
+             payload: "DEVELOPER_DEFINED_PAYLOAD"
+           }, {
+             type: "phone_number",
+             title: "Call Phone Number",
+             payload: "+16505551234"
+           }]
+         }
+       }
+     }
+   };
+
+
+
 function sendButtonMessage(recipientId) {
   var messageData = {
     recipient: {
