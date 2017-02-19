@@ -529,7 +529,7 @@ function sendTextMessage(recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: event.recipient.id,
+      text: recipientId,
       metadata: "DEVELOPER_DEFINED_METADATA"
     }
   };
