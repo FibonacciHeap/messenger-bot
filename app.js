@@ -319,10 +319,10 @@ function receivedMessage(event) {
         sendTextMessage(senderID, messageText);
 
     } else if(messageText === "Lost" && !LostPet) {
-      console.log("georgy");
-      console.log(message);
-      console.log(my_data);
-      console.log(message);
+        console.log("georgy");
+        console.log(message);
+        console.log(my_data);
+        console.log(message);
 
         LostPet = true;
         Larr = 1;
