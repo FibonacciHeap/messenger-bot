@@ -325,6 +325,90 @@ function receivedMessage(event) {
     and will be able to understand the context because we will create it.
     */
 
+    if(Aarr[0] == 1 && Aarr[1] == 0){
+      //call corresponding function
+      Aarr[1] = 1;
+      var messageText = "Hi there! ";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Sarr[0] == 1 && Sarr[1] == 0){
+      //call corresponding function
+      Sarr[1] = 1;
+      var messageText = "Hi there! Thank you so much for being a good samaritan!";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Larr[0] == 1 && Larr[1] == 0){
+      //call corresponding function
+      Larr[1] = 1;
+      var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
+      sendTextMessage(senderID, messageText);
+    }
+
+    //************************
+
+    if(Aarr[1] == 2 && Aarr[2] == 0){
+      //call corresponding function
+      Aarr[2] = 1;
+      var messageText = "Hi there! ";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Sarr[1] == 2 && Sarr[2] == 0){
+      //call corresponding function
+      Sarr[2] = 1;
+      var messageText = "Hi there! Thank you so much for being a good samaritan!";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Larr[1] == 2 && Larr[2] == 0){
+      //call corresponding function
+      Larr[2] = 1;
+      var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
+      sendTextMessage(senderID, messageText);
+    }
+
+    //***************************
+
+    if(Aarr[2] == 3 && Aarr[3] == 0){
+      //call corresponding function
+      Aarr[3] = 1;
+      var messageText = "Hi there! ";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Sarr[2] == 3 && Sarr[3] == 0){
+      //call corresponding function
+      Sarr[3] = 1;
+      var messageText = "Hi there! Thank you so much for being a good samaritan!";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Larr[2] == 3 && Larr[3] == 0){
+      //call corresponding function
+      Larr[3] = 1;
+      var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
+      sendTextMessage(senderID, messageText);
+    }
+
+    //***************************
+
+    if(Aarr[3] == 4 && Aarr[4] == 0){
+      //call corresponding function
+      Aarr[4] = 1;
+      var messageText = "Hi there! ";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Sarr[3] == 4 && Sarr[4] == 0){
+      //call corresponding function
+      Sarr[4] = 1;
+      var messageText = "Hi there! Thank you so much for being a good samaritan!";
+      sendTextMessage(senderID, messageText);
+    }
+    else if(Larr[3] == 4 && Larr[4] == 0){
+      //call corresponding function
+      Larr[4] = 1;
+      var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
+      sendTextMessage(senderID, messageText);
+    }
+
+    //******************************
+
 
 
 
