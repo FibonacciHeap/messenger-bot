@@ -19,6 +19,14 @@ const
   request = require('request');
 
 var app = express();
+
+var LostPet = false;
+var StrayPet = false;
+var AwarePet = false;
+var Larr = new Array(5); // declare an array "a", of size 5
+var Sarr = new Array(5);
+var Aarr = new Array(5);
+
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
@@ -267,17 +275,16 @@ function receivedMessage(event) {
 
     }
   */
+    /*
+        sendTextMessage(senderID, seqNum);
+        sendTextMessage(senderID, "P");
+        sendTextMessage(senderID, seqNum2);
+        sendTextMessage(senderID, "R");
+        sendTextMessage(senderID, seqNum3);
+    */
 
 
-  //if (seqNum % 2 == 0) {
-    sendTextMessage(senderID, seqNum);
-    sendTextMessage(senderID, "P");
-    sendTextMessage(senderID, seqNum2);
-    sendTextMessage(senderID, "R");
-    sendTextMessage(senderID, seqNum3);
-  //} else if(seqNum % 2 == 1){
-    //sendTextMessage(senderID, "Im odd!");
-  //}
+
 
 
 
@@ -286,6 +293,41 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
+    if(messageText === "reset"){
+      StrayPet = false;
+      LostPet = false;
+      AwarePet = false;
+      Larr = new Array(5); // declare an array "a", of size 5
+      Sarr = new Array(5);
+      Aarr = new Array(5);
+    }
+
+    if(messageText === "stray" && !StrayPet){
+      StrayPet = true;
+      Sarr.push(1);
+      var messageText = "hi1";
+      sendTextMessage(senderID, messageText);
+    } else if(messageText === "lost" && !LostPet) {
+      LostPet = true;
+      Larr.push(1);
+      var messageText = "hi2";
+      sendTextMessage(senderID, messageText);
+      //function call
+    } else if(messageText === "aware" && !AwarePet) {
+      AwarePet = true;
+      Aarr.push(1);
+      var messageText = "hi3";
+      sendTextMessage(senderID, messageText);
+      //function call
+    }
+    /*
+    Now, depending on whichever option was selected from the beginning, then we will be able to tell what to ask the user next
+    and will be able to understand the context because we will create it.
+    */
+
+
+
+
     switch (messageText) {
       case 'hi':
         sendButtonMessage(senderID);
