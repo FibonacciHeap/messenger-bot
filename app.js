@@ -270,7 +270,7 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'petdetect':
+      case 'hi':
         sendFirstButtonMessage(senderID);
         break;
 
@@ -633,8 +633,8 @@ function sendButtonMessage(recipientId) {
           text: "This is test text",
           buttons:[{
             type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Open Web URL"
+            url: "https://www.facebook.com/bestfriendsanimalsociety/",
+            title: "Awareness"
           }, {
             type: "postback",
             title: "Trigger Postback",
