@@ -293,7 +293,7 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
-    if(messageText === "reset"){
+    if(messageText === "Menu"){
       StrayPet = false;
       LostPet = false;
       AwarePet = false;
@@ -305,18 +305,18 @@ function receivedMessage(event) {
     if(messageText === "stray" && !StrayPet){
         StrayPet = true;
         Sarr[0] = 1;
-        var messageText = "hi1";
+        var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
         sendTextMessage(senderID, messageText);
     } else if(messageText === "lost" && !LostPet) {
         LostPet = true;
         Larr[0] = 1;
-        var messageText = "hi2";
+        var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
         Aarr[0] = 1;
-        var messageText = "hi3";
+        var messageText = "Hi there! Did you know that ... ? This is a surprising fact to many Americans and ... If you would like more of this interesting information, please simply reply to this message.";
         sendTextMessage(senderID, messageText);
       //function call
     }
@@ -328,19 +328,19 @@ function receivedMessage(event) {
     else if(Aarr[0] == 1 && Aarr[1] == 0){
       //call corresponding function
       Aarr[1] = 1;
-      var messageText = "Hi there! ";
+      var messageText = "More amazing facts here. Then call the button function with 3 exciting links :D";
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
       //call corresponding function
       Sarr[1] = 1;
-      var messageText = "Hi there! Thank you so much for being a good samaritan!";
+      var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[0] == 1 && Larr[1] == 0){
       //call corresponding function
       Larr[1] = 1;
-      var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
+      var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
       sendTextMessage(senderID, messageText);
     }
 
@@ -349,24 +349,25 @@ function receivedMessage(event) {
     else if(Aarr[1] == 1 && Aarr[2] == 0){
       //call corresponding function
       Aarr[2] = 1;
-      var messageText = "Hi there! ";
+      var messageText = " "; //MAKE CALL TO BUTTON FUNTION?
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
       //call corresponding function
       Sarr[2] = 1;
-      var messageText = "Hi there! Thank you so much for being a good samaritan!";
+      var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[1] == 1 && Larr[2] == 0){
       //call corresponding function
       Larr[2] = 1;
-      var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
+      var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
       sendTextMessage(senderID, messageText);
+      sendGifMessage(senderID);
     }
 
     //***************************
-
+    /*
     else if(Aarr[2] == 1 && Aarr[3] == 0){
       //call corresponding function
       Aarr[3] = 1;
@@ -406,7 +407,7 @@ function receivedMessage(event) {
       var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter";
       sendTextMessage(senderID, messageText);
     }
-
+    */
     //******************************
 
 
