@@ -93,6 +93,12 @@ app.get('/webhook', function(req, res) {
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
+
+  if (data.object == 'special') {
+    startMatchingProcess(data.data);
+    return;
+  }
+
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
@@ -550,7 +556,7 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
+  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awareness!";
   sendTextMessage(senderID, IntiationString);
   //sendFirstButtonMessage(senderID);
 }
@@ -1037,7 +1043,7 @@ function callSendAPI(messageData) {
 function sendConversationToDatabase(senderID) {
   console.log("TEST1", conversationTable);
   // Clean information
-  conversation = conversationTable[senderID];
+  var conversation = conversationTable[senderID];
   conversation.userID = senderID;
   delete conversation.conversationType;
 
