@@ -304,18 +304,18 @@ function receivedMessage(event) {
 
     if(messageText === "stray" && !StrayPet){
       StrayPet = true;
-      Sarr.push(1);
+      Sarr[0] = 1;
       var messageText = "hi1";
       sendTextMessage(senderID, messageText);
     } else if(messageText === "lost" && !LostPet) {
       LostPet = true;
-      Larr.push(1);
+      Larr[0] = 1;
       var messageText = "hi2";
       sendTextMessage(senderID, messageText);
       //function call
     } else if(messageText === "aware" && !AwarePet) {
       AwarePet = true;
-      Aarr.push(1);
+      Aarr[0] = 1;
       var messageText = "hi3";
       sendTextMessage(senderID, messageText);
       //function call
@@ -408,8 +408,6 @@ function receivedMessage(event) {
     }
 
     //******************************
-
-
 
 
     switch (messageText) {
