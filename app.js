@@ -23,9 +23,9 @@ var app = express();
 var LostPet = false;
 var StrayPet = false;
 var AwarePet = false;
-var Larr = new Array(5); // declare an array "a", of size 5
-var Sarr = new Array(5);
-var Aarr = new Array(5);
+var Larr = [0, 0, 0, 0, 0];
+var Sarr = [0, 0, 0, 0, 0];
+var Aarr = [0, 0, 0, 0, 0];
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
