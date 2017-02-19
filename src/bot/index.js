@@ -89,11 +89,7 @@ const buildMessage = (message, key) => {
 
 const getResponsesForMessage = ({message, userKey}) => {
   return new Promise((resolve, reject) => {
-    //console.log(message);
-    if(message.text === 'Get Started') {
-      resolve([defaultResponses.startMessage])
-    }
-    else if(message.text === 'Option 1') {
+    if(message.text === 'Option 1') {
       resolve([defaultResponses.samarMessage]);
     } else if(message.text === 'Option 2') {
       resolve([defaultResponses.lostMessage]);
@@ -102,7 +98,6 @@ const getResponsesForMessage = ({message, userKey}) => {
     } else if(responses.hasOwnProperty(message.text)) {
       // add something cooler
     } else {
-      console.log(message);
       resolve([defaultResponses.invalidMessage]);
     }
   });
