@@ -293,19 +293,19 @@ function receivedMessage(event) {
     */
 
     // Add where your complicated if/else statements are, on the top.
-    if (conversationTable[senderID] &&
-        conversationTable[senderID].conversationType == "match1") {
-          if (messageText.toLowerCase() === "yes") {
-            sendTextMessage(senderID, "If you think it is, you can contact or visit " +
-               conversationTable[senderID].data["caregiverName"] + " at any time to verify.");
-            delete conversationTable[senderID];
-          } else if (messageText.toLowerCase() === "no") {
-            sendTextMessage(senderID, "Ok. We will keep looking!");
-            delete conversationTable[senderID];
-          } else {
-            // do nothing...
-          }
-    }
+    // if (conversationTable[senderID] &&
+    //     conversationTable[senderID].conversationType == "match1") {
+    //       if (messageText.toLowerCase() === "yes") {
+    //         sendTextMessage(senderID, "If you think it is, you can contact or visit " +
+    //            conversationTable[senderID].data["caregiverName"] + " at any time to verify.");
+    //         delete conversationTable[senderID];
+    //       } else if (messageText.toLowerCase() === "no") {
+    //         sendTextMessage(senderID, "Ok. We will keep looking!");
+    //         delete conversationTable[senderID];
+    //       } else {
+    //         // do nothing...
+    //       }
+    // }
 
 
   //if (messageText) {
@@ -326,7 +326,7 @@ function receivedMessage(event) {
     if(messageText === "Report" && !StrayPet){
         StrayPet = true;
         Sarr = 1;
-        conversationTable[senderID] = {"conversationType": messageText};
+        //conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
 
@@ -338,7 +338,7 @@ function receivedMessage(event) {
 
         LostPet = true;
         Larr = 1;
-        conversationTable[senderID] = {"conversationType": messageText};
+        //conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
         sendQuickReply(senderID);
@@ -363,7 +363,7 @@ function receivedMessage(event) {
     }
     else if(Sarr == 1){
       console.log('check', my_data);
-      conversationTable[senderID].url = my_data.attachments.payload.url;
+      //conversationTable[senderID].url = my_data.attachments.payload.url;
 
       //call corresponding function
       Sarr = 2;
@@ -375,8 +375,8 @@ function receivedMessage(event) {
       console.log('check', my_data);
       //conversationTable[senderID].zipcode = messageText;
 
-      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
+    //  conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
 
       //call corresponding function
       Larr = 2;
@@ -396,9 +396,9 @@ function receivedMessage(event) {
     else if(Sarr == 2){
       console.log('check', my_data);
       //conversationTable[senderID].zipcode = messageText;
-      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
-      sendConversationToDatabase(senderID);
+      //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
+      sendConversationToDatabase(senderID, "samaratin");
       //call corresponding function
       Sarr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
@@ -415,8 +415,8 @@ function receivedMessage(event) {
     }
     else if(Larr == 2){
       console.log('check', my_data);
-      conversationTable[senderID].url = my_data.attachments.payload.url;
-      sendConversationToDatabase(senderID);
+      //conversationTable[senderID].url = my_data.attachments.payload.url;
+      sendConversationToDatabase(senderID, "owner");
       //call corresponding function
       Larr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
@@ -1072,28 +1072,34 @@ function callSendAPI(messageData) {
 }
 
 
-function sendConversationToDatabase(senderID) {
+function sendConversationToDatabase(senderID, type) {
   console.log("TEST1", conversationTable);
   // Clean information
-  conversationTable[senderID]["userID"] = senderID;
-
-  var url = "https://pet-detective-159121.appspot.com";
-  if (conversation.conversationType == "Lost") {
-    url += "/lost";
-    conversationTable[senderID]["recordType"] = "owner"; // LOL!
-  } else if (conversation.conversationType == "Report") { // samaritan
-    url += "/found";
-    conversationTable[senderID]["recordType"] = "samaratan";
-  }
-
-  delete conversation.conversationType;
+  // conversationTable[senderID]["userID"] = senderID;
+  //
+  // var url = "https://pet-detective-159121.appspot.com";
+  // if (conversation.conversationType == "Lost") {
+  //   url += "/lost";
+  //   conversationTable[senderID]["recordType"] = "owner"; // LOL!
+  // } else if (conversation.conversationType == "Report") { // samaritan
+  //   url += "/found";
+  //   conversationTable[senderID]["recordType"] = "samaratan";
+  // }
+  //
+  // delete conversation.conversationType;
 
   // Send information
-  request.post(url).form(conversation);
+  request.post(url).form({
+    "url": "http://r.ddmcdn.com/s_f/o_1/cx_633/cy_0/cw_1725/ch_1725/w_720/APL/uploads/2014/11/too-cute-doggone-it-video-playlist.jpg",
+    "recordType": "owner",
+    "reportLat": "123",
+    "reportLon": "69",
+    "userID": senderID
+  });
   console.log("TEST2", conversation);
 
   // Delete conversation
-  delete conversationTable[senderID];
+  //delete conversationTable[senderID];
   console.log("TEST3", conversationTable);
 }
 
