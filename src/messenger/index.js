@@ -19,6 +19,13 @@ export let verifyMessenger = (req, res) => {
 export let handleMessages = (req, res) => {
   let entries = req.body.entry;
 
+  if(event.messageobj.type=='location'){
+      var lat = event.messageobj.latitude;
+      var lang = event.messageobj.longitude;
+      var url = event.message;
+      context.sendResponse("Your lat:"+lat+"\n Your lang:"+lang+"\n MapURL:"+url);
+}
+
   if(typeof entries !== 'object' || entries.length < 1) {
     logger.error('Unable to parse \'entry\' of messenger webhook');
     res.sendStatus(500);
