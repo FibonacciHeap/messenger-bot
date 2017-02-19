@@ -320,6 +320,7 @@ function receivedMessage(event) {
       Larr = 0; // declare an array "a", of size 5
       Sarr = 0;
       Aarr = 0;
+      conversationTable = {};
     }
 
     if(messageText === "Report" && !StrayPet){
