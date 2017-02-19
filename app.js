@@ -392,8 +392,8 @@ function receivedMessage(event) {
     else if(Aarr == 2){
       //call corresponding function
       Aarr = 3;
-      var messageText = ""; //MAKE CALL TO BUTTON FUNCTION?
-      sendTextMessage(senderID, messageText);
+      //var messageText = ""; //MAKE CALL TO BUTTON FUNCTION?
+      //sendTextMessage(senderID, messageText);
       sendButtonMessage(senderID);
     }
     else if(Sarr == 2){
