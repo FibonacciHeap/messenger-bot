@@ -346,7 +346,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
-      conversationTable[senderID].url = my_data.attachment;
+      conversationTable[senderID].url = my_data.attachment.payload.url;
 
       //call corresponding function
       Sarr[1] = 1;
@@ -376,8 +376,8 @@ function receivedMessage(event) {
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
       conversationTable[senderID].zipcode = messageText;
-      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
+      conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr[2] = 1;
@@ -385,7 +385,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[1] == 1 && Larr[2] == 0){
-      conversationTable[senderID].url = my_data.attachment;
+      conversationTable[senderID].url = my_data.attachment.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Larr[2] = 1;
