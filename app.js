@@ -25,9 +25,9 @@ var conversationTable = {};
 var LostPet = false;
 var StrayPet = false;
 var AwarePet = false;
-var Larr = [0, 0, 0, 0, 0];
-var Sarr = [0, 0, 0, 0, 0];
-var Aarr = [0, 0, 0, 0, 0];
+var Larr = 0;
+var Sarr = 0;
+var Aarr = 0;
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -306,21 +306,21 @@ function receivedMessage(event) {
       StrayPet = false;
       LostPet = false;
       AwarePet = false;
-      Larr = new Array(5); // declare an array "a", of size 5
-      Sarr = new Array(5);
-      Aarr = new Array(5);
+      Larr = 0; // declare an array "a", of size 5
+      Sarr = 0;
+      Aarr = 0;
     }
 
     if(messageText === "stray" && !StrayPet){
         StrayPet = true;
-        Sarr[0] = 1;
+        Sarr = 1;
         conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
 
     } else if(messageText === "lost" && !LostPet) {
         LostPet = true;
-        Larr[0] = 1;
+        Larr = 1;
         conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
@@ -329,7 +329,7 @@ function receivedMessage(event) {
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
-        Aarr[0] = 1;
+        Aarr = 1;
         var messageText = "Hi there! Did you know that over two million dogs and cats are still killed in shelters every year? This is a surprising fact to many Americans and there has been a lot of progress in this spapce, but there is still much work to do. We can saves these lives together through awareness and action. If you would like more of this interesting information, please simply reply to this message.";
         sendTextMessage(senderID, messageText);
       //function call
@@ -339,56 +339,56 @@ function receivedMessage(event) {
     and will be able to understand the context because we will create it.
     */
 
-    else if(Aarr[0] == 1 && Aarr[1] == 0){
+    else if(Aarr == 1){
       //call corresponding function
-      Aarr[1] = 1;
+      Aarr = 2;
       var messageText = "More amazing facts here. Then call the button function with 3 exciting links :D";
       sendTextMessage(senderID, messageText);
     }
-    else if(Sarr[0] == 1 && Sarr[1] == 0){
+    else if(Sarr == 1){
       conversationTable[senderID].url = my_data.attachments.payload.url;
 
       //call corresponding function
-      Sarr[1] = 1;
+      Sarr = 2;
       var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
       sendTextMessage(senderID, messageText);
       sendQuickReply(senderID);
     }
-    else if(Larr[0] == 1 && Larr[1] == 0){
+    else if(Larr == 1 ){
       //conversationTable[senderID].zipcode = messageText;
       conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
 
       //call corresponding function
-      Larr[1] = 1;
+      Larr = 2;
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
       sendTextMessage(senderID, messageText);
     }
 
     //************************
 
-    else if(Aarr[1] == 1 && Aarr[2] == 0){
+    else if(Aarr == 2){
       //call corresponding function
-      Aarr[2] = 1;
+      Aarr = 3;
       var messageText = "Something"; //MAKE CALL TO BUTTON FUNTION?
       sendTextMessage(senderID, messageText);
       sendButtonMessage(senderID);
     }
-    else if(Sarr[1] == 1 && Sarr[2] == 0){
+    else if(Sarr == 2){
       //conversationTable[senderID].zipcode = messageText;
       conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
-      Sarr[2] = 1;
+      Sarr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
       sendTextMessage(senderID, messageText);
     }
-    else if(Larr[1] == 1 && Larr[2] == 0){
+    else if(Larr == 2){
       conversationTable[senderID].url = my_data.attachments.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
-      Larr[2] = 1;
+      Larr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
       sendTextMessage(senderID, messageText);
       sendGifMessage(senderID);
