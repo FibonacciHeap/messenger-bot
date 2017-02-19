@@ -229,7 +229,9 @@ function receivedMessage(event) {
   var messageId = message.mid;
   var appId = message.app_id;
   var metadata = message.metadata;
-  var seqNum = message.sequenceNumber;
+  var seqNum = event.sequenceNumber;
+  var seqNum2 = event.seq;
+  var seqNum3 = message.seq;
 
   // You may get a text or attachment but not both
   var messageText = message.text;
@@ -269,6 +271,8 @@ function receivedMessage(event) {
 
   //if (seqNum % 2 == 0) {
     sendTextMessage(senderID, seqNum);
+    sendTextMessage(senderID, seqNum2);
+    sendTextMessage(senderID, seqNum3);
   //} else if(seqNum % 2 == 1){
     //sendTextMessage(senderID, "Im odd!");
   //}
