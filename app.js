@@ -303,21 +303,21 @@ function receivedMessage(event) {
     }
 
     if(messageText === "stray" && !StrayPet){
-      StrayPet = true;
-      Sarr[0] = 1;
-      var messageText = "hi1";
-      sendTextMessage(senderID, messageText);
+        StrayPet = true;
+        Sarr[0] = 1;
+        var messageText = "hi1";
+        sendTextMessage(senderID, messageText);
     } else if(messageText === "lost" && !LostPet) {
-      LostPet = true;
-      Larr[0] = 1;
-      var messageText = "hi2";
-      sendTextMessage(senderID, messageText);
+        LostPet = true;
+        Larr[0] = 1;
+        var messageText = "hi2";
+        sendTextMessage(senderID, messageText);
       //function call
     } else if(messageText === "aware" && !AwarePet) {
-      AwarePet = true;
-      Aarr[0] = 1;
-      var messageText = "hi3";
-      sendTextMessage(senderID, messageText);
+        AwarePet = true;
+        Aarr[0] = 1;
+        var messageText = "hi3";
+        sendTextMessage(senderID, messageText);
       //function call
     }
     /*
@@ -325,7 +325,7 @@ function receivedMessage(event) {
     and will be able to understand the context because we will create it.
     */
 
-    if(Aarr[0] == 1 && Aarr[1] == 0){
+    else if(Aarr[0] == 1 && Aarr[1] == 0){
       //call corresponding function
       Aarr[1] = 1;
       var messageText = "Hi there! ";
@@ -346,7 +346,7 @@ function receivedMessage(event) {
 
     //************************
 
-    if(Aarr[1] == 2 && Aarr[2] == 0){
+    else if(Aarr[1] == 2 && Aarr[2] == 0){
       //call corresponding function
       Aarr[2] = 1;
       var messageText = "Hi there! ";
@@ -367,7 +367,7 @@ function receivedMessage(event) {
 
     //***************************
 
-    if(Aarr[2] == 3 && Aarr[3] == 0){
+    else if(Aarr[2] == 3 && Aarr[3] == 0){
       //call corresponding function
       Aarr[3] = 1;
       var messageText = "Hi there! ";
@@ -388,7 +388,7 @@ function receivedMessage(event) {
 
     //***************************
 
-    if(Aarr[3] == 4 && Aarr[4] == 0){
+    else if(Aarr[3] == 4 && Aarr[4] == 0){
       //call corresponding function
       Aarr[4] = 1;
       var messageText = "Hi there! ";
@@ -476,7 +476,7 @@ function receivedMessage(event) {
         break;
 
       default:
-        sendTextMessage(senderID, messageText);
+        //sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
