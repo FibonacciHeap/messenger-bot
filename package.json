@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/TreeHacks/hackpack-chatbot.git"
   },
+  "engines": {
+    "node": "7.4.0"
+  },
   "author": "Brandon Truong",
   "license": "MIT",
   "bugs": {
