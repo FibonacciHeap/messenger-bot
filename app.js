@@ -321,6 +321,8 @@ function receivedMessage(event) {
       Sarr = 0;
       Aarr = 0;
       conversationTable = {};
+      var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
+      sendTextMessage(senderID, IntiationString);
     }
 
     if(messageText === "Report" && !StrayPet){
@@ -361,6 +363,7 @@ function receivedMessage(event) {
       Aarr = 2;
       sendButtonMessage(senderID);
     }
+
     else if(Sarr == 1){
       console.log('check', my_data);
       //conversationTable[senderID].url = my_data.attachments.payload.url;
@@ -382,10 +385,6 @@ function receivedMessage(event) {
       Larr = 2;
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
       sendTextMessage(senderID, messageText);
-    }
-    else if(Larr == 3 || Aarr == 3 || Sarr == 3){
-      var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
-      sendTextMessage(senderID, IntiationString);
     }
 
     //************************
