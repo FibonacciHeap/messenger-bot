@@ -327,13 +327,13 @@ function receivedMessage(event) {
 
     else if(Aarr[0] == 1 && Aarr[1] == 0){
       //call corresponding function
-      Aarr[1] = 2;
+      Aarr[1] = 1;
       var messageText = "Hi there! ";
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
       //call corresponding function
-      Sarr[1] = 2;
+      Sarr[1] = 1;
       var messageText = "Hi there! Thank you so much for being a good samaritan!";
       sendTextMessage(senderID, messageText);
     }
