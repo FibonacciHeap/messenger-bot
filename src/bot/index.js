@@ -29,7 +29,7 @@ const defaultResponses = {
   failure: "Sorry, something went wrong!",
   hereYouGo: "Here's a cool article",
 
-/*
+  /*
   curl -X POST -H "Content-Type: application/json" -d '{
     "recipient":{
       "id":"USER_ID"
@@ -43,7 +43,7 @@ const defaultResponses = {
     ]
   }
 }' "https://graph.facebook.com/v2.6/me/messages?access_token=EAAaaynZCAqP0BANTwHZBxzNHco1mEwvn9mlymCwNheCEqmy2clDCUs8Y9oLae6EChj0lTSmuU0wt6VFDUgII1SpFP8p64ZC3usC58F7ZA7c8pYZCdhoVTbM5NVousoK9tZBnwwDQKtkgcBi6lpBSPlSFjEZCfBV7SZAvH2qn41kQ0wZDZD"
-*/
+  */
 
   locationInstruction: {
     text: 'Please share your location.',
