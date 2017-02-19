@@ -10,6 +10,9 @@
   "engines": {
     "node": "7.4.0"
   },
+  "scripts": {
+	"start": "node index.js"
+  },
   "author": "Brandon Truong",
   "license": "MIT",
   "bugs": {
