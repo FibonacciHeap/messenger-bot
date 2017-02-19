@@ -292,9 +292,20 @@ function receivedMessage(event) {
         sendTextMessage(senderID, seqNum3);
     */
 
-
-
-
+    // Add where your complicated if/else statements are, on the top.
+    if (conversationTable[senderID] &&
+        conversationTable[senderID].conversationType == "match1") {
+          if (messageText.toLowerCase() === "yes") {
+            sendTextMessage(senderID, "If you think it is, you can contact or visit " +
+               conversationTable[senderID].data["caregiverName"] + " at any time to verify.");
+            delete conversationTable[senderID];
+          } else if (messageText.toLowerCase() === "no") {
+            sendTextMessage(senderID, "Ok. We will keep looking!");
+            delete conversationTable[senderID];
+          } else {
+            // do nothing...
+          }
+    }
 
 
   //if (messageText) {
@@ -350,6 +361,7 @@ function receivedMessage(event) {
       sendButtonMessage(senderID);
     }
     else if(Sarr == 1){
+      console.log('check', my_data);
       //conversationTable[senderID].url = my_data.attachments.payload.url;
 
       //call corresponding function
@@ -359,6 +371,7 @@ function receivedMessage(event) {
       sendQuickReply(senderID);
     }
     else if(Larr == 1 ){
+      console.log('check', my_data);
       //conversationTable[senderID].zipcode = messageText;
 
       //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
@@ -380,6 +393,7 @@ function receivedMessage(event) {
       sendButtonMessage(senderID);
     }
     else if(Sarr == 2){
+      console.log('check', my_data);
       //conversationTable[senderID].zipcode = messageText;
       //conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       //conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
@@ -388,10 +402,18 @@ function receivedMessage(event) {
       Sarr = 3;
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for a potential owner or savior for this animal.";
       sendTextMessage(senderID, messageText);
+      // Add at the end of the samaritan pipeline (after posting to the API)
+      sendTextMessage(senderID, "If you take the pet to our closest caregiver facility," +
+                      " you would be eligible for an instantaneous $5 reward! Just give" +
+                      " us your venmo account.");
+      sendImageMessage(senderID, "http://brand.venmo.com/img/logoblue.png");
+
+
       sendGifMessage(senderID);
       sendTextMessage(senderID, "Ask 'what's next?' to go back to the original menu and do something else!'");
     }
     else if(Larr == 2){
+      console.log('check', my_data);
       //conversationTable[senderID].url = my_data.attachments.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
@@ -1054,11 +1076,20 @@ function sendConversationToDatabase(senderID) {
   // Clean information
   var conversation = conversationTable[senderID];
   conversation.userID = senderID;
+
+  var url = "https://pet-detective-159121.appspot.com";
+  if (conversation.conversationType == "Lost") {
+    url += "/lost";
+    conversation["recordType"] = "owner"; // LOL!
+  } else if (conversation.conversationType == "Report") { // samaritan
+    url += "/found";
+    conversation["recordType"] = "samaratan";
+  }
+
   delete conversation.conversationType;
 
   // Send information
-  var DATA_API_URL = "https://pet-detective-159121.appspot.com";
-  //request.post(DATA_API_URL).form(conversation);
+  request.post(url).form(conversation);
   console.log("TEST2", conversation);
 
   // Delete conversation
@@ -1099,28 +1130,6 @@ function sendImageMessage(recipientId, url) {
   };
 
   callSendAPI(messageData);
-}
-
-// Add at the end of the samaritan pipeline (after posting to the API)
-sendTextMessage(senderID, "If you take the pet to our closest caregiver facility," +
-                " you would be eligible for an instantaneous $5 reward! Just give" +
-                " us your venmo account.");
-sendImageMessage(senderID, "http://brand.venmo.com/img/logoblue.png");
-
-
-// Add where your complicated if/else statements are, on the top.
-if (conversationTable[senderID] &&
-    conversationTable[senderID].conversationType == "match1") {
-      if (messageText.toLowerCase() === "yes") {
-        sendTextMessage(senderID, "If you think it is, you can contact or visit " +
-           conversationTable[senderID].data["caregiverName"] + " at any time to verify.");
-        delete conversationTable[senderID];
-      } else if (messageText.toLowerCase() === "no") {
-        sendTextMessage(senderID, "Ok. We will keep looking!");
-        delete conversationTable[senderID];
-      } else {
-        // do nothing...
-      }
 }
 
 
