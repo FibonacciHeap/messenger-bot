@@ -313,15 +313,17 @@ function receivedMessage(event) {
     if(messageText === "stray" && !StrayPet){
         StrayPet = true;
         Sarr[0] = 1;
+        conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
-        conversationTable[senderID] = {"conversationType": messageText};
+
     } else if(messageText === "lost" && !LostPet) {
         LostPet = true;
         Larr[0] = 1;
+        conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
-        conversationTable[senderID] = {"conversationType": messageText};
+
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
@@ -342,7 +344,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Sarr[0] == 1 && Sarr[1] == 0){
-      conversationTable[senderID].url = messageAttachments; //?
+      conversationTable[senderID].url = messageAttachments.payload.url; //?
 
       //call corresponding function
       Sarr[1] = 1;
@@ -376,7 +378,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, messageText);
     }
     else if(Larr[1] == 1 && Larr[2] == 0){
-      conversationTable[senderID].url = messageText;
+      conversationTable[senderID].url = messageAttachments.payload.url;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Larr[2] = 1;
@@ -1048,7 +1050,7 @@ function sendConversationToDatabase(senderID) {
   delete conversation.conversationType;
 
   // Send information
-  var DATA_API_URL = "https://";
+  var DATA_API_URL = "https://pet-detective-159121.appspot.com";
   //request.post(DATA_API_URL).form(conversation);
   console.log("TEST2", conversation);
 
