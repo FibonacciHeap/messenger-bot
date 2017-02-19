@@ -356,6 +356,8 @@ function receivedMessage(event) {
     }
     else if(Larr == 1 ){
       //conversationTable[senderID].zipcode = messageText;
+      console.log(my_data);
+      console.log(message);
       conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
       conversationTable[senderID].reportLon = my_data.attachments.payload.coordinates.long;
 
