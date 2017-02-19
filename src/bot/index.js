@@ -97,6 +97,7 @@ const getResponsesForMessage = ({message, userKey}) => {
     } else if(responses.hasOwnProperty(message.text)) {
       // add something cooler
     } else {
+      console.log(message);
       resolve([defaultResponses.invalidMessage]);
     }
   });
