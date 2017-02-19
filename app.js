@@ -324,7 +324,8 @@ function receivedMessage(event) {
         conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! We're very sorry to hear about your loss and will be working hard to help you find your companion. Please enter the location where you believe your dog was lost. ";
         sendTextMessage(senderID, messageText);
-        sendQuickReply(recipientId);
+        sendQuickReply(senderID);
+
       //function call
     } else if(messageText === "aware" && !AwarePet) {
         AwarePet = true;
@@ -351,12 +352,13 @@ function receivedMessage(event) {
       Sarr[1] = 1;
       var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
       sendTextMessage(senderID, messageText);
-      sendQuickReply(recipientId);
+      sendQuickReply(senderID);
     }
     else if(Larr[0] == 1 && Larr[1] == 0){
-      //conversationTable[senderID].zipcode = messageText; //?
-      //conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
-      //conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
+      conversationTable[senderID].zipcode = messageText;
+      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.payload.coordinates.long; //?
+
       //call corresponding function
       Larr[1] = 1;
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
@@ -368,14 +370,14 @@ function receivedMessage(event) {
     else if(Aarr[1] == 1 && Aarr[2] == 0){
       //call corresponding function
       Aarr[2] = 1;
-      var messageText = ""; //MAKE CALL TO BUTTON FUNTION?
+      var messageText = "Something"; //MAKE CALL TO BUTTON FUNTION?
       sendTextMessage(senderID, messageText);
       sendButtonMessage(senderID);
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
       conversationTable[senderID].zipcode = messageText;
-      //conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
-      //conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
+      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
+      conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr[2] = 1;
@@ -908,7 +910,6 @@ function sendReceiptMessage(recipientId) {
  * Send a message with Quick Reply buttons.
  *
  */
-
  function sendQuickReply(recipientId) {
    var messageData = {
      recipient: {
