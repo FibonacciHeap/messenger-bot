@@ -355,8 +355,8 @@ function receivedMessage(event) {
     }
     else if(Larr[0] == 1 && Larr[1] == 0){
       //conversationTable[senderID].zipcode = messageText; //?
-      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
+      //conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
+      //conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
       //call corresponding function
       Larr[1] = 1;
       var messageText = "Thank you for the information! If you have an image of your animal, could you please provide it below?";
@@ -368,14 +368,14 @@ function receivedMessage(event) {
     else if(Aarr[1] == 1 && Aarr[2] == 0){
       //call corresponding function
       Aarr[2] = 1;
-      var messageText = "Something"; //MAKE CALL TO BUTTON FUNTION?
+      var messageText = ""; //MAKE CALL TO BUTTON FUNTION?
       sendTextMessage(senderID, messageText);
       sendButtonMessage(senderID);
     }
     else if(Sarr[1] == 1 && Sarr[2] == 0){
       conversationTable[senderID].zipcode = messageText;
-      conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
-      conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
+      //conversationTable[senderID].reportLat = my_data.payload.coordinates.lat;
+      //conversationTable[senderID].reportLon = my_data.payload.coordinates.long;
       sendConversationToDatabase(senderID);
       //call corresponding function
       Sarr[2] = 1;
