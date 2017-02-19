@@ -265,11 +265,13 @@ function receivedMessage(event) {
 
     }
   */
-  if (seqNum % 2 == 0) {
-    sendTextMessage(senderID, "Im even!");
-  } else if(seqNum % 2 == 1){
-    sendTextMessage(senderID, "Im odd!");
-  }
+
+
+  //if (seqNum % 2 == 0) {
+    sendTextMessage(senderID, seqNum);
+  //} else if(seqNum % 2 == 1){
+    //sendTextMessage(senderID, "Im odd!");
+  //}
 
 
 
