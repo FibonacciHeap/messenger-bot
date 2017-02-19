@@ -347,8 +347,7 @@ function receivedMessage(event) {
     else if(Aarr == 1){
       //call corresponding function
       Aarr = 2;
-      var messageText = "More amazing facts here. Then call the button function with 3 exciting links :D";
-      sendTextMessage(senderID, messageText);
+      sendButtonMessage(senderID);
     }
     else if(Sarr == 1){
       //conversationTable[senderID].url = my_data.attachments.payload.url;
@@ -791,9 +790,9 @@ function sendButtonMessage(recipientId) {
             title: "https://en.wikipedia.org/wiki/Animal_welfare",
             payload: "Learn about Animal Welfare"
           }, {
-            type: "phone_number",
-            title: "Call Phone Number",
-            payload: "+16505551234"
+            type: "web_url"
+            title: "http://www.humanesociety.org/issues/abuse_neglect/tips/cruelty_action.html?referrer=https://www.google.com/",
+            payload: "Report Animal Cruelty"
           }]
         }
       }
