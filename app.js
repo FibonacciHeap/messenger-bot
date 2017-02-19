@@ -311,14 +311,14 @@ function receivedMessage(event) {
       Aarr = 0;
     }
 
-    if(messageText === "stray" && !StrayPet){
+    if(messageText === "Report" && !StrayPet){
         StrayPet = true;
         Sarr = 1;
         conversationTable[senderID] = {"conversationType": messageText};
         var messageText = "Hi there! Thank you so much for being a good samaritan! If you have an image of the animal, could you please provide it below?";
         sendTextMessage(senderID, messageText);
 
-    } else if(messageText === "lost" && !LostPet) {
+    } else if(messageText === "Lost" && !LostPet) {
       console.log("georgy");
       console.log(message);
       console.log(my_data);
@@ -332,7 +332,7 @@ function receivedMessage(event) {
         sendQuickReply(senderID);
 
       //function call
-    } else if(messageText === "aware" && !AwarePet) {
+    } else if(messageText === "Aware" && !AwarePet) {
         AwarePet = true;
         Aarr = 1;
         var messageText = "Hi there! Did you know that over two million dogs and cats are still killed in shelters every year? This is a surprising fact to many Americans and there has been a lot of progress in this spapce, but there is still much work to do. We can saves these lives together through awareness and action. If you would like more of this interesting information, please simply reply to this message.";
@@ -355,7 +355,7 @@ function receivedMessage(event) {
 
       //call corresponding function
       Sarr = 2;
-      var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location";
+      var messageText = "Hi there! Thank you so much for being a good samaritan! Can you please provide your location?";
       sendTextMessage(senderID, messageText);
       sendQuickReply(senderID);
     }
@@ -376,7 +376,7 @@ function receivedMessage(event) {
     else if(Aarr == 2){
       //call corresponding function
       Aarr = 3;
-      var messageText = "Something"; //MAKE CALL TO BUTTON FUNCTION?
+      var messageText = ""; //MAKE CALL TO BUTTON FUNCTION?
       sendTextMessage(senderID, messageText);
       sendButtonMessage(senderID);
     }
@@ -398,6 +398,11 @@ function receivedMessage(event) {
       var messageText = "Thank you so much! We have taken note of the information and will be keeping an eye out for you as we keep in touch. Alriiiighty then, talk to you soon!";
       sendTextMessage(senderID, messageText);
       sendGifMessage(senderID);
+    }
+
+    if(Larr == 3 || Aarr == 3 || Sarr == 3){
+      var messageText = "";
+      sendTextMessage(senderID, messageText);
     }
 
     //***************************
@@ -571,7 +576,7 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness!";
+  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness! Please enter 'Report' to report any stray animals, 'Lost' to report a lost pet, and 'Aware' to learn more about this crisis in America.";
   sendTextMessage(senderID, IntiationString);
   //sendFirstButtonMessage(senderID);
 }
@@ -777,11 +782,11 @@ function sendButtonMessage(recipientId) {
           buttons:[{
             type: "web_url",
             url: "https://www.facebook.com/bestfriendsanimalsociety/",
-            title: "Awareness"
+            title: "Animal Welfare Organization"
           }, {
-            type: "postback",
-            title: "Trigger Postback",
-            payload: "DEVELOPER_DEFINED_PAYLOAD"
+            type: "web_url",
+            title: "https://en.wikipedia.org/wiki/Animal_welfare",
+            payload: "Learn about Animal Welfare"
           }, {
             type: "phone_number",
             title: "Call Phone Number",
