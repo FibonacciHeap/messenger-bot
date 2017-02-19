@@ -356,6 +356,8 @@ function receivedMessage(event) {
     }
     else if(Larr == 1 ){
       //conversationTable[senderID].zipcode = messageText;
+      console.log("georgy");
+      console.log(message);
       console.log(my_data);
       console.log(message);
       conversationTable[senderID].reportLat = my_data.attachments.payload.coordinates.lat;
@@ -372,7 +374,7 @@ function receivedMessage(event) {
     else if(Aarr == 2){
       //call corresponding function
       Aarr = 3;
-      var messageText = "Something"; //MAKE CALL TO BUTTON FUNTION?
+      var messageText = "Something"; //MAKE CALL TO BUTTON FUNCTION?
       sendTextMessage(senderID, messageText);
       sendButtonMessage(senderID);
     }
@@ -567,7 +569,7 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awareness!";
+  var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal welfare awareness!";
   sendTextMessage(senderID, IntiationString);
   //sendFirstButtonMessage(senderID);
 }
