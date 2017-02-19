@@ -1073,7 +1073,7 @@ function callSendAPI(messageData) {
 
 
 function sendConversationToDatabase(senderID, type) {
-  console.log("TEST1", conversationTable);
+  //console.log("TEST1", conversationTable);
   // Clean information
   // conversationTable[senderID]["userID"] = senderID;
   //
@@ -1096,11 +1096,11 @@ function sendConversationToDatabase(senderID, type) {
     "reportLon": "69",
     "userID": senderID
   });
-  console.log("TEST2", conversation);
+  //console.log("TEST2", conversation);
 
   // Delete conversation
   //delete conversationTable[senderID];
-  console.log("TEST3", conversationTable);
+  //console.log("TEST3", conversationTable);
 }
 
 // Put this implementation at the bottom.
