@@ -381,7 +381,7 @@ function receivedPostback(event) {
   // let them know it was successful
   var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
   //sendTextMessage(senderID, IntiationString);
-  sendFirstButtonMessage(senderId);
+  sendFirstButtonMessage(senderID);
 }
 
 /*
