@@ -1066,6 +1066,64 @@ function sendConversationToDatabase(senderID) {
   console.log("TEST3", conversationTable);
 }
 
+// Put this implementation at the bottom.
+function startMatchingProcess(matchData) {
+  var id = matchData["facebookID"];
+  if (conversationTable[id]) {
+    return;
+  }
+
+  sendTextMessage(id, "We are " +  Math.floor(matchData["confidence"])*100)
+     + "% confident" + " that this is your " + match["petType"] + ". Is it?");
+
+  sendImageMessage(id, match["imageURL"]);
+
+  conversationTable[id] = {"conversationType": "match1", "data": match};
+}
+
+
+// Replace your old function with this one.
+function sendImageMessage(recipientId, url) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "image",
+        payload: {
+          url: url
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+// Add at the end of the samaritan pipeline (after posting to the API)
+sendTextMessage(senderID, "If you take the pet to our closest caregiver facility," +
+                " you would be eligible for an instantaneous $5 reward! Just give" +
+                " us your venmo account.");
+sendImageMessage(senderID, "http://brand.venmo.com/img/logoblue.png");
+
+
+// Add where your complicated if/else statements are, on the top.
+if (conversationTable[senderID] &&
+    conversationTable[senderID].conversationType == "match1") {
+      if (messageText.toLowerCase() === "yes") {
+        sendTextMessage(senderID, "If you think it is, you can contact or visit " +
+           conversationTable[senderID].data["caregiverName"] + " at any time to verify.");
+        delete conversationTable[senderID];
+      } else if (messageText.toLowerCase() === "no") {
+        sendTextMessage(senderID, "Ok. We will keep looking!");
+        delete conversationTable[senderID];
+      } else {
+        // do nothing...
+      }
+}
+
+
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid
 // certificate authority.
