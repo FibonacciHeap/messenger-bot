@@ -1,5 +1,5 @@
 {
-  "name": "hackpack-chatbot",
+  "name": "hackpack-chatbot-master",
   "version": "1.0.0",
   "description": "We're going to build a chatbot with Node.js that integrates with Facebook Messenger, Slack, and Telegram.",
   "main": "src/index.js",
