@@ -20,10 +20,31 @@ const defaultResponses = {
       ]
     }
   },
+  samarMessage: "Oh you're the best!",
+  lostMessage: "Alrighty then! I'm here to help",
+  awareMessage: "Hey there! Good to hear from you. What kind of info would you like to know about?",
+
   greetingMessage: "Hello world!",
   invalidMessage: "Sorry, didn't understand that!",
   failure: "Sorry, something went wrong!",
   hereYouGo: "Here's a cool article",
+
+/*
+  curl -X POST -H "Content-Type: application/json" -d '{
+    "recipient":{
+      "id":"USER_ID"
+    },
+    "message":{
+      "text":"Please share your location:",
+    "quick_replies":[
+      {
+        "content_type":"location",
+      }
+    ]
+  }
+}' "https://graph.facebook.com/v2.6/me/messages?access_token=EAAaaynZCAqP0BANTwHZBxzNHco1mEwvn9mlymCwNheCEqmy2clDCUs8Y9oLae6EChj0lTSmuU0wt6VFDUgII1SpFP8p64ZC3usC58F7ZA7c8pYZCdhoVTbM5NVousoK9tZBnwwDQKtkgcBi6lpBSPlSFjEZCfBV7SZAvH2qn41kQ0wZDZD"
+*/
+
   locationInstruction: {
     text: 'Please share your location.',
     quick_replies: [
@@ -67,10 +88,12 @@ const buildMessage = (message, key) => {
 
 const getResponsesForMessage = ({message, userKey}) => {
   return new Promise((resolve, reject) => {
-    if(message.text === 'hi') {
-      resolve([defaultResponses.greetingMessage, defaultResponses.instructions]);
-    } else if(message.text === 'random') {
-      // add something cool
+    if(message.text === 'Option 1') {
+      resolve([defaultResponses.samarMessage]);
+    } else if(message.text === 'Option 2') {
+      resolve([defaultResponses.lostMessage]);
+    } else if(message.text === 'Option 3') {
+      resolve([defaultResponses.awareMessage]);
     } else if(responses.hasOwnProperty(message.text)) {
       // add something cooler
     } else {
