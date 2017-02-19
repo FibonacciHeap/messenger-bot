@@ -260,15 +260,15 @@ function receivedMessage(event) {
         break;
 
       case 'Stray Animal.':
-        sendStrayMessage(senderID, messageText);
+        sendStrayMessage(senderID);
         break;
 
       case 'Report your lost pet.':
-        sendLostMessage(senderID, messageText);
+        sendLostMessage(senderID);
         break;
 
       case 'Awareness.':
-        sendAwarenesMessage(senderID, messageText);
+        sendAwarenesMessage(senderID);
         break;
 
       case 'gif':
@@ -380,8 +380,8 @@ function receivedPostback(event) {
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
   var IntiationString = "Hello there! I'm the Pet Detective and I'm here to help you with found animals, lost pets, and overall animal awarenes!";
-  //sendTextMessage(senderID, IntiationString);
-  sendFirstButtonMessage(senderID);
+  sendTextMessage(senderID, IntiationString);
+  //sendFirstButtonMessage(senderID);
 }
 
 /*
@@ -426,16 +426,19 @@ function receivedAccountLink(event) {
  * Send an image using the Send API.
  *
  */
-function sendStrayMessage(senderID, messageText){
-
+function sendStrayMessage(senderID){
+  var speech = "help the cats!";
+  sendTextMessage(senderID, speech);
 }
 
-function sendLostMessage(senderID, messageText){
-
+function sendLostMessage(senderID){
+  var speech = "help the cats!";
+  sendTextMessage(senderID, speech);
 }
 
-function sendAwarenesMessage(senderID, messageText){
-
+function sendAwarenesMessage(senderID){
+  var speech = "help the cats!";
+  sendTextMessage(senderID, speech);
 }
 
 function sendImageMessage(recipientId) {
@@ -587,9 +590,13 @@ function sendTextMessage(recipientId, messageText) {
              title: "Trigger Postback",
              payload: "DEVELOPER_DEFINED_PAYLOAD"
            }, {
-             type: "phone_number",
-             title: "Call Phone Number",
-             payload: "+16505551234"
+             type: "postback",
+             title: "Trigger Postback",
+             payload: "DEVELOPER_DEFINED_PAYLOAD"
+           }, {
+             type: "web_url",
+             url: "https://www.oculus.com/en-us/rift/",
+             title: "Animal Awareness"
            }]
          }
        }
