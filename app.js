@@ -812,7 +812,7 @@ function sendButtonMessage(recipientId) {
             title: "https://en.wikipedia.org/wiki/Animal_welfare",
             payload: "Learn about Animal Welfare"
           }, {
-            type: "web_url"
+            type: "web_url",
             title: "http://www.humanesociety.org/issues/abuse_neglect/tips/cruelty_action.html?referrer=https://www.google.com/",
             payload: "Report Animal Cruelty"
           }]
