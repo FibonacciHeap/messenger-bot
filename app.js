@@ -1104,7 +1104,7 @@ function startMatchingProcess(matchData) {
     return;
   }
 
-  sendTextMessage(id, "We are " +  Math.floor(matchData["confidence"])*100)
+  sendTextMessage(id, "We are " +  Math.floor(matchData["confidence"]*100)
      + "% confident" + " that this is your " + match["petType"] + ". Is it?");
 
   sendImageMessage(id, match["imageURL"]);
